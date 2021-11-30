@@ -1,7 +1,20 @@
 # VinteR
 
 
-## Deployment:
+# Deployment and Installation:
+
+As this project makes heavy use of OptiTrack, Leap Motion and Microsoft Kinect in specific versions, you have to install some software to get things working.
+
+The leap motion requires the .NET Framework 4.5.x! 4.6 and higher might work but are not tested. For Windows 10 users the kinect sdk has to be installed in windows 7 compatibility mode! Otherwise runtime errors are going to occure. To get the frames from the Leap Motion, you need to install the Leap Motion Orion Software on your machine, for building or running the solution it is not necessary. If you want use a gitlab runner instance on your machine to execute continuous integration Visual Studio 2017 Enterprise is required. Take a look at the `.gitlab-ci.yml`. There is an absolute path to the `MSBuild.exe`.
+
+## Requirements
+
+- .NET Framework 4.5.x
+- Microsoft Kinect SDK 1.8
+- Leap Motion Developer Kit (Orion) 3.2.1
+- Microsoft Visual Studio 2017 Enterprise (only for gitlab runner)
+
+## Installation
 
 1. Deploy the broker (server.py) on a server. The server must be publicly available.
 
@@ -13,8 +26,7 @@
 
 5. Install the NuGet packages. Right click on the VinteR C# project in Visual Studio and select "Manage NuGet Packages...".
 
-6. Install/Update the packages needed to run VinteR via the NuGet Manager.
-
+6. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retreive the packages needed.
 
 ## Configure VinteR
 
