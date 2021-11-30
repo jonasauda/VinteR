@@ -1,7 +1,7 @@
 # VinteR
 
 
-Deployment:
+## Deployment:
 
 1. Deploy the broker (server.py) on a server. The server must be publicly available.
 
@@ -21,3 +21,6 @@ Deployment:
 
 
 
+## Run VinteR
+
+1.
