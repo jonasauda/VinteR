@@ -17,7 +17,7 @@
 
 ## Configure VinteR
 
-1. Enter the broker IP address/url in the "vinter.config.json" at "broker.address"
+1. Enter the broker IP address/url and port in the "vinter.config.json" at "broker.address"
 
 
 
