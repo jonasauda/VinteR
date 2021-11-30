@@ -31,7 +31,7 @@ The leap motion requires the .NET Framework 4.5.x! 4.6 and higher might work but
 ## Configure VinteR
 
 1. Enter the broker IP address/url and port in the "vinter.config.json" at "broker.address".
-2. in "udp.receivers" the locations are definded. For location "LOCATION-1" enter your IP address and port. For the remote location enter the remote IP address and port.
+2. in "udp.receivers" the locations are definded. For location "LOCATION1" enter your IP address and port. For the remote location enter the remote IP address and port.
 3. You may need to configure port forwarding on your router.
 
 ## Run VinteR
