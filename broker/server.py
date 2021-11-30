@@ -2,7 +2,7 @@ import sys
 import socket
 import time
 
-SERVER_ADDRESS = ("46.101.139.210", 43720)
+SERVER_ADDRESS = ("192.168.1.3", 43720)
 
 connectionEstablished = False
 connections = []
