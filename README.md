@@ -26,7 +26,7 @@ The leap motion requires the .NET Framework 4.5.x! 4.6 and higher might work but
 
 5. Install the NuGet packages. Right click on the VinteR C# project in Visual Studio and select "Manage NuGet Packages...".
 
-6. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retreive the packages needed.
+6. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retreive package automatically.
 
 ## Configure VinteR
 
