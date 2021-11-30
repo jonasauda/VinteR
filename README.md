@@ -22,7 +22,7 @@ The leap motion requires the .NET Framework 4.5.x! 4.6 and higher might work but
 
 3. Start the script.
 
-4. Open the VinteR app in Visual Studio.
+4. Open the VinteR app in Visual Studio (VinteR\vinter\VinteR\VinteR.sln).
 
 5. Install the NuGet packages. Right click on the VinteR C# project in Visual Studio and select "Manage NuGet Packages...".
 
