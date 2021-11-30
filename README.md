@@ -20,7 +20,6 @@
 
 1. Enter the broker IP address/url and port in the "vinter.config.json" at "broker.address".
 
-
 ## Run VinteR
 
 1. Start the project in Visual Studio (Start button).
