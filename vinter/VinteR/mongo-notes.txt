@@ -1,0 +1,21 @@
+create user for DB "vinter":
+> use vinter
+> db.createUser(
+    {
+      user: "holo",
+      pwd: "holoroomvinter",
+      roles: ["readWrite"]
+    }
+  )
+
+start MongoDB daemon
+> mongod --config c:\tools\mongodb\db\mongod.conf
+
+connect mongo cli client
+> mongo mongodb://holo:holoroomvinter@localhost:27017/vinter
+
+dump mongodb
+> mongodump --uri "mongodb://holo:holoroomvinter@localhost:27017/vinter"
+
+import mongo dump (not tested) flag --drop drops the entire database that is being imported
+> mongorestore --uri "mongodb://holo:holoroomvinter@localhost:27017/vinter" path/to/mongodump/

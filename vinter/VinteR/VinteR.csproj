@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0D2D7E9-2B86-4F02-AABC-32137A86D52F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>VinteR</RootNamespace>
+    <AssemblyName>VinteR</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CodenameGenerator, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\CodenameGenerator.1.2.47\lib\net452\CodenameGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=27.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>packages\CsvHelper.27.2.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DnsClient, Version=1.5.0.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>packages\DnsClient.1.5.0\lib\net45\DnsClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.19.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grapevine, Version=4.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Grapevine.4.2.2\lib\net40\Grapevine.dll</HintPath>
+    </Reference>
+    <Reference Include="LeapCSharp.NET4.5">
+      <HintPath>..\lib\x64\LeapCSharp.NET4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Kinect.2.0.1410.19000\lib\net45\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Tools, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
+      <HintPath>packages\Microsoft.Kinect.Tools.x64.2.0.1410.19000\lib\net45\Microsoft.Kinect.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MongoDB.Bson.2.14.0\lib\netstandard2.0\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MongoDB.Driver.2.14.0\lib\netstandard2.0\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MongoDB.Driver.Core.2.14.0\lib\netstandard2.0\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MongoDB.Libmongocrypt.1.3.0\lib\netstandard2.0\MongoDB.Libmongocrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="NatNetML">
+      <HintPath>..\lib\x64\NatNetML.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Schema, Version=3.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.Schema.3.0.14\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.4.7.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SharpCompress, Version=0.30.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>packages\SharpCompress.0.30.1\lib\net461\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.6.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter\Network\Hrri.cs" />
+    <Compile Include="Adapter\Network\NetworkAdapter.cs" />
+    <Compile Include="Adapter\Network\NetworkClient.cs" />
+    <Compile Include="Adapter\Network\NetworkEventHandler.cs" />
+    <Compile Include="Adapter\Peer\PeerAdapter.cs" />
+    <Compile Include="ConnectionBroker\ConnectionBroker.cs" />
+    <Compile Include="Datamerge\PeerNetworkMerger.cs" />
+    <Compile Include="Datamerge\NetworkMerger.cs" />
+    <Compile Include="FloatExtensions.cs" />
+    <Compile Include="HardwareSystems.cs" />
+    <Compile Include="Input\IQueryService.cs" />
+    <Compile Include="Input\JsonStorage.cs" />
+    <Compile Include="Input\MongoQueryService.cs" />
+    <Compile Include="MainApplication\IPlaybackService.cs" />
+    <Compile Include="MainApplication\IRecordService.cs" />
+    <Compile Include="MainApplication\PlaybackService.cs" />
+    <Compile Include="MainApplication\RecordService.cs" />
+    <Compile Include="Rest\DefaultRouter.cs" />
+    <Compile Include="Streaming\IStreamingServer.cs" />
+    <Compile Include="MainApplication\ISessionNameGenerator.cs" />
+    <Compile Include="MainApplication\SessionNameGenerator.cs" />
+    <Compile Include="Model\Gen\Model.cs" />
+    <Compile Include="Model\Session.cs" />
+    <Compile Include="Mongo\IVinterMongoDBClient.cs" />
+    <Compile Include="Mongo\QuaternionSerializer.cs" />
+    <Compile Include="Mongo\VectorSerializer.cs" />
+    <Compile Include="Mongo\VinterMongoDBClient.cs" />
+    <Compile Include="OutputAdapter\ConsoleOutputAdapter.cs" />
+    <Compile Include="OutputAdapter\IOutputAdapter.cs" />
+    <Compile Include="OutputAdapter\JsonFileOutputAdapter.cs" />
+    <Compile Include="OutputAdapter\MongoOutputAdapter.cs" />
+    <Compile Include="Rest\IHttpResponseWriter.cs" />
+    <Compile Include="Rest\InvalidArgumentException.cs" />
+    <Compile Include="Rest\IRestRouter.cs" />
+    <Compile Include="Rest\HttpResponseWriter.cs" />
+    <Compile Include="Rest\IRestServer.cs" />
+    <Compile Include="Rest\SessionRouter.cs" />
+    <Compile Include="Rest\SessionsRouter.cs" />
+    <Compile Include="Rest\VinterRestServer.cs" />
+    <Compile Include="Streaming\UdpSender.cs" />
+    <Compile Include="OutputManager\IOutputManager.cs" />
+    <Compile Include="OutputManager\OutputManager.cs" />
+    <Compile Include="QuaternionExtensions.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\Serializer.cs" />
+    <Compile Include="Streaming\HighResolutionTimer.cs" />
+    <Compile Include="Streaming\ISessionPlayer.cs" />
+    <Compile Include="Streaming\SessionPlayer.cs" />
+    <Compile Include="Tracking\IAdapterTracker.cs" />
+    <Compile Include="Adapter\IInputAdapter.cs" />
+    <Compile Include="Adapter\LeapMotion\LeapMotionAdapter.cs" />
+    <Compile Include="Adapter\LeapMotion\LeapMotionEventHandler.cs" />
+    <Compile Include="Adapter\OptiTrack\OptiTrackAdapter.cs" />
+    <Compile Include="Tracking\OptiTrackAdapterTracker.cs" />
+    <Compile Include="Adapter\OptiTrack\OptiTrackClient.cs" />
+    <Compile Include="Adapter\OptiTrack\OptiTrackEventHandler.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Configuration\IConfigurationService.cs" />
+    <Compile Include="Configuration\VinterConfigurationService.cs" />
+    <Compile Include="Datamerge\IDataMerger.cs" />
+    <Compile Include="Datamerge\KinectMerger.cs" />
+    <Compile Include="Datamerge\LeapMotionMerger.cs" />
+    <Compile Include="Datamerge\OptiTrackMerger.cs" />
+    <Compile Include="MainApplication\IMainApplication.cs" />
+    <Compile Include="MainApplication\MainApplication.cs" />
+    <Compile Include="Model\Body.cs" />
+    <Compile Include="Model\Point.cs" />
+    <Compile Include="Model\Kinect\KinectBody.cs" />
+    <Compile Include="Model\MocapFrame.cs" />
+    <Compile Include="Model\OptiTrack\OptiTrackBody.cs" />
+    <Compile Include="Model\OptiTrack\Skeleton.cs" />
+    <Compile Include="Model\ESideType.cs" />
+    <Compile Include="Model\LeapMotion\Hand.cs" />
+    <Compile Include="Model\LeapMotion\Finger.cs" />
+    <Compile Include="Model\LeapMotion\FingerBone.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracking\Position.cs" />
+    <Compile Include="Transform\ITransformator.cs" />
+    <Compile Include="Transform\Transformator.cs" />
+    <Compile Include="Vector3Extensions.cs" />
+    <Compile Include="VinterNinjectModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Core\Compression\Snappy\lib\linux\libsnappy64.so" />
+    <None Include="Core\Compression\Snappy\lib\osx\libsnappy64.dylib" />
+    <None Include="Core\Compression\Zstandard\lib\linux\libzstd.so" />
+    <None Include="Core\Compression\Zstandard\lib\osx\libzstd.dylib" />
+    <None Include="libmongocrypt.dylib" />
+    <None Include="libmongocrypt.so" />
+    <None Include="model.proto" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="vinter.config.default.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="vinter.config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="vinter.config.schema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Core\Compression\Snappy\lib\win\snappy32.dll" />
+    <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
+    <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
+    <Content Include="mongocrypt.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /yr "$(SolutionDir)\..\lib\x64\LeapC.dll" "$(TargetDir)"
+xcopy /yr "$(SolutionDir)\..\lib\x64\NatNetLib.dll" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties vinter_1config_1json__JSONSchema="vinter.config.schema.json" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="packages\MongoDB.Libmongocrypt.1.3.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('packages\MongoDB.Libmongocrypt.1.3.0\build\MongoDB.Libmongocrypt.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MongoDB.Libmongocrypt.1.3.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MongoDB.Libmongocrypt.1.3.0\build\MongoDB.Libmongocrypt.targets'))" />
+    <Error Condition="!Exists('packages\MongoDB.Driver.Core.2.14.0\build\MongoDB.Driver.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MongoDB.Driver.Core.2.14.0\build\MongoDB.Driver.Core.targets'))" />
+    <Error Condition="!Exists('packages\LeapLib.1.0.5\build\LeapLib.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\LeapLib.1.0.5\build\LeapLib.targets'))" />
+  </Target>
+  <Import Project="packages\MongoDB.Driver.Core.2.14.0\build\MongoDB.Driver.Core.targets" Condition="Exists('packages\MongoDB.Driver.Core.2.14.0\build\MongoDB.Driver.Core.targets')" />
+  <Import Project="packages\LeapLib.1.0.5\build\LeapLib.targets" Condition="Exists('packages\LeapLib.1.0.5\build\LeapLib.targets')" />
+</Project>

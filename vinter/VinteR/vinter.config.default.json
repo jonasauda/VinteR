@@ -1,0 +1,82 @@
+{
+  "start.mode": "record",
+  "home.dir": "C:\\VinteRData",
+  "rest": {
+    "enabled": false,
+    "host": "localhost",
+    "port": 8010
+  },
+  "udp.server.port": 5060,
+  "udp.receivers": [
+    {
+      "ip": "127.0.0.1",
+      "port": 2020,
+      "hrri": "MUC-YELLOW"
+    }
+  ],
+  "mongodb": {
+    "enabled": false,
+    "write": true,
+    "domain": "localhost",
+    "user": "dbvinter",
+    "password": "dbvinter18",
+    "database": "vinter",
+    "port": 27017,
+    "bufferSize": 35000
+  },
+  "adapters": [
+    {
+      "enabled": false,
+      "name": "kinect",
+      "framedroprate": 1,
+      "adaptertype": "kinect",
+      "skeleton.TrackingFilter.enabled": true,
+      "data.dir": "KinectData",
+      "colorStream.enabled": false,
+      "colorStream.flush": false,
+      "colorStream.flushSize": 60,
+      "colorStream.flush.dirname": "colorStreamData",
+      "depthStream.enabled": false,
+      "depthStream.flush": false,
+      "depthStream.flushSize": 15,
+      "depthStream.flush.dirname": "DepthStreamData",
+      "skeletonStream.flush": false,
+      "skeletonStream.flushSize": 200,
+      "skeletonStream.flush.dirname": "skeletonStreamData"
+    },
+    {
+      "enabled": false,
+      "name": "leapmotion",
+      "adaptertype": "leapmotion",
+      "framedroprate": 2
+    },
+    {
+      "enabled": true,
+      "name": "optitrack",
+      "adaptertype": "optitrack",
+      "server.ip": "127.0.0.1",
+      "client.ip": "127.0.0.1",
+      "framedroprate": 2,
+      "connection.type": "multicast"
+    },
+    {
+      "enabled": true,
+      "name": "holoroom",
+      "framedroprate": 2,
+      "adaptertype": "holoroom",
+      "client.port": 7282,
+      "hrri": "MUC"
+    },
+    {
+      "enabled": true,
+      "name": "peer",
+      "framedroprate": 2,
+      "adaptertype": "peer",
+      "keepalive": true,
+      "client.tx.port": 27005,
+      "broker.address": "ENTER_BROKER_ADDRESS_HERE",
+      "broker.port": 43720
+    }
+  ],
+  "jsonLoggerEnable": false
+}

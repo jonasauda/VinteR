@@ -1,0 +1,195 @@
+﻿{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "definitions": {
+    "enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Tell the application if the adapter is available or not"
+    },
+    "name": {
+      "type": "string",
+      "description": "Used to identify the object"
+    },
+    "framedroprate": {
+      "type": "integer",
+      "default": 1,
+      "description": "Tell the application which frames to send, e.g. all or every second"
+    },
+    "mongodb": {
+      "type": "object",
+      "properties": {
+        "enabled": { "$ref": "#/definitions/enabled" },
+        "write": { "type": "boolean" },
+        "domain": { "type": "string" },
+        "user": { "type": "string" },
+        "password": { "type": "string" },
+        "database": { "type": "string" },
+        "port": { "type": "integer" },
+        "bufferSize": { "type": "integer" }
+      },
+      "required": [ "enabled", "write", "domain", "user", "password", "database", "port", "bufferSize" ]
+    },
+    "leapmotion": {
+      "type": "object",
+      "properties": {
+        "enabled": { "$ref": "#/definitions/enabled" },
+        "name": { "$ref": "#/definitions/name" },
+        "framedroprate": { "$ref": "#/definitions/framedroprate" },
+        "adaptertype": {
+          "type": "string",
+          "enum": [ "leapmotion" ]
+        }
+      },
+      "required": [ "enabled", "name" ]
+    },
+    "kinect": {
+      "type": "object",
+      "properties": {
+        "enabled": { "$ref": "#/definitions/enabled" },
+        "name": { "$ref": "#/definitions/name" },
+        "framedroprate": { "$ref": "#/definitions/framedroprate" },
+        "adaptertype": {
+          "type": "string",
+          "enum": [ "kinect" ]
+        },
+        "colorStream.enabled": { "type": "boolean" },
+        "colorStream.flush": { "type": "boolean" },
+        "depthStream.enabled": { "type": "boolean" },
+        "depthStream.flush": { "type": "boolean" },
+        "skeletonStream.flush": { "type": "boolean" }
+      },
+      "required": [ "enabled", "name" ]
+    },
+    "optitrack": {
+      "type": "object",
+      "properties": {
+        "enabled": { "$ref": "#/definitions/enabled" },
+        "name": { "$ref": "#/definitions/name" },
+        "adaptertype": {
+          "type": "string",
+          "enum": [ "optitrack" ]
+        },
+        "framedroprate": { "$ref": "#/definitions/framedroprate" },
+        "server.ip": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "Server ip address to connect to optitrack"
+        },
+        "client.ip": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "Client ip that this client uses to communicate with optitrack"
+        },
+        "connection.type": {
+          "type": "string",
+          "default": "unicast",
+          "enum": [ "multicast", "unicast" ]
+        }
+      },
+      "required": [ "enabled", "name" ]
+    },
+    "holoroom": {
+      "type": "object",
+      "properties": {
+        "enabled": { "$ref": "#/definitions/enabled" },
+        "name": { "$ref": "#/definitions/name" },
+        "adaptertype": {
+          "type": "string",
+          "enum": [ "holoroom" ]
+        },
+        "client.port": {
+          "type": "integer",
+          "description": "Port that this client uses to listen to incoming frames from the network"
+        },
+        "framedroprate": { "$ref": "#/definitions/framedroprate" }
+      },
+      "required": [ "enabled", "name", "client.port" ]
+    },
+    "peer": {
+      "type": "object",
+      "properties": {
+        "enabled": { "$ref": "#/definitions/enabled" },
+        "name": { "$ref": "#/definitions/name" },
+        "adaptertype": {
+          "type": "string",
+          "enum": [ "peer" ]
+        },
+        "framedroprate": { "$ref": "#/definitions/framedroprate" },
+        "keepalive": {
+          "type": "boolean",
+          "description": "Send some data between peers in regualar intervals to keep connection alive"
+        },
+        "client.tx.port": {
+          "type": "integer",
+          "default": 27001,
+          "description": "Client port used to send data to peer server. Port used to receive data is this increased by one."
+        },
+        "broker.address": {
+          "type": "string",
+          "description": "Address of connecion broker service."
+        },
+        "broker.port": {
+          "type": "integer",
+          "description": "Port of connecion broker service."
+        }
+      },
+      "required": [ "enabled", "name", "keepalive", "broker.address", "broker.port" ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "start.mode": {
+      "type": "string",
+      "enum": [ "record", "playback" ]
+    },
+    "home.dir": {
+      "$id": "/properties/home.dir",
+      "type": "string",
+      "title": "The Home.dir Schema ",
+      "default": "",
+      "examples": [
+        "C:\\VinteRData"
+      ]
+    },
+    "rest": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "host": { "type": "string" },
+        "port": { "type": "integer" }
+      }
+    },
+    "udp.receivers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string",
+            "default": "127.0.0.1"
+          },
+          "port": {
+            "type": "integer"
+          },
+          "hrri": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adapters": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/definitions/leapmotion" },
+          { "$ref": "#/definitions/kinect" },
+          { "$ref": "#/definitions/optitrack" },
+          { "$ref": "#/definitions/holoroom" },
+          { "$ref": "#/definitions/peer" }
+        ]
+      }
+    }
+  },
+  "required": [ "start.mode", "home.dir", "rest", "udp.server.port" ]
+}
