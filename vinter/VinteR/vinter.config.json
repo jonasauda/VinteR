@@ -9,14 +9,14 @@
   "udp.server.port": 5060,
   "udp.receivers": [
     {
-      "ip": "192.168.0.105",
+      "ip": "192.168.1.3",
       "port": 2020,
-      "hrri": "ESS-BLUE"
+      "hrri": "LOCATION1"
     },
     {
       "ip": "192.168.0.113",
       "port": 7282,
-      "hrri": "MUC"
+      "hrri": "LOCATION2"
     }
   ],
   "mongodb": {
@@ -70,7 +70,7 @@
       "framedroprate": 2,
       "adaptertype": "holoroom",
       "client.port": 7282,
-	    "hrri": "ESS"
+      "hrri": "LOCATION1"
     },
     {
       "enabled": true,
