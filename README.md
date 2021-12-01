@@ -37,3 +37,7 @@ The leap motion requires the .NET Framework 4.5.x! 4.6 and higher might work but
 ## Run VinteR
 
 1. Start the project in Visual Studio (Start button).
+
+
+## License
+MIT
