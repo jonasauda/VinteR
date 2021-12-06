@@ -56,7 +56,7 @@
       "framedroprate": 2
     },
     {
-      "enabled": false,
+      "enabled": true,
       "name": "optitrack",
       "adaptertype": "optitrack",
       "server.ip": "127.0.0.1",
@@ -65,7 +65,7 @@
       "connection.type": "multicast"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "holoroom",
       "framedroprate": 2,
       "adaptertype": "holoroom",
@@ -73,7 +73,7 @@
       "hrri": "LOCATION1"
     },
     {
-      "enabled": true,
+      "enabled": false, 
       "name": "peer",
       "framedroprate": 2,
       "adaptertype": "peer",
