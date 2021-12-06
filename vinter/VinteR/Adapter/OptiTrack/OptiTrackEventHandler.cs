@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if OPTITRACK
+using System.Collections.Generic;
 using System.Numerics;
 using NatNetML;
 using VinteR.Model;
@@ -146,3 +147,4 @@ namespace VinteR.Adapter.OptiTrack
         }
     }
 }
+#endif

@@ -1,9 +1,15 @@
 ﻿using Ninject.Modules;
 using VinteR.Adapter;
+#if LEAP
 using VinteR.Adapter.LeapMotion;
+#endif
 using VinteR.Adapter.Network;
+#if OPTITRACK
 using VinteR.Adapter.OptiTrack;
+#endif
+#if PEER
 using VinteR.Adapter.Peer;
+#endif
 using VinteR.Configuration;
 using VinteR.Datamerge;
 using VinteR.Input;
@@ -30,21 +36,41 @@ namespace VinteR
             Bind<IPlaybackService>().To<PlaybackService>().InSingletonScope();
             Bind<IConfigurationService>().To<VinterConfigurationService>().InSingletonScope();
 
+#if LEAP
             Bind<IInputAdapter>().To<LeapMotionAdapter>().Named(HardwareSystems.LeapMotion);
+#endif
+#if OPTITRACK
             Bind<IInputAdapter>().To<OptiTrackAdapter>().Named(HardwareSystems.OptiTrack);
+#endif
+#if HOLOROOM
             Bind<IInputAdapter>().To<NetworkAdapter>().Named(HardwareSystems.HoloRoom);
+#endif
+#if PEER
             Bind<IInputAdapter>().To<PeerAdapter>().Named(HardwareSystems.Peer);
+#endif
 
             Bind<ITransformator>().To<Transformator>();
+#if OPTITRACK
             Bind<IAdapterTracker>().To<OptiTrackAdapterTracker>().InSingletonScope();
             Bind<IOptiTrackClient>().To<OptiTrackClient>().InSingletonScope();
+#endif
             Bind<INetworkClient>().To<NetworkClient>().InSingletonScope();
 
+#if LEAP
             Bind<IDataMerger>().To<LeapMotionMerger>().Named(HardwareSystems.LeapMotion);
+#endif
+#if KINECT
             Bind<IDataMerger>().To<KinectMerger>().Named(HardwareSystems.Kinect);
+#endif
+#if OPTITRACK
             Bind<IDataMerger>().To<OptiTrackMerger>().Named(HardwareSystems.OptiTrack);
+#endif
+#if HOLOROOM
             Bind<IDataMerger>().To<NetworkMerger>().Named(HardwareSystems.HoloRoom);
+#endif
+#if PEER
             Bind<IDataMerger>().To<PeerNetworkMerger>().Named(HardwareSystems.Peer);
+#endif
 
             Bind<IOutputManager>().To<OutputManager.OutputManager>().InThreadScope();
             Bind<IOutputAdapter>().To<ConsoleOutputAdapter>().InThreadScope();

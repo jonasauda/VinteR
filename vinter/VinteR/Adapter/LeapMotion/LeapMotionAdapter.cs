@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if LEAP
+using System;
 using Leap;
 
 namespace VinteR.Adapter.LeapMotion
@@ -76,3 +77,4 @@ namespace VinteR.Adapter.LeapMotion
         }
     }
 }
+#endif
