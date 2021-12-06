@@ -244,8 +244,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /yr "$(SolutionDir)\..\lib\x64\LeapC.dll" "$(TargetDir)"
-xcopy /yr "$(SolutionDir)\..\lib\x64\NatNetLib.dll" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>if exist "$(SolutionDir)\lib\x64\LeapC.dll" xcopy /yr "$(SolutionDir)\lib\x64\LeapC.dll" "$(TargetDir)"
+if exist "$(SolutionDir)\lib\x64\NatNetLib.dll"  xcopy /yr "$(SolutionDir)\lib\x64\NatNetLib.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
