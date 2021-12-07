@@ -3,6 +3,9 @@ using VinteR.Adapter;
 #if LEAP
 using VinteR.Adapter.LeapMotion;
 #endif
+#if KINECT
+using VinteR.Adapter.Kinect;
+#endif
 using VinteR.Adapter.Network;
 #if OPTITRACK
 using VinteR.Adapter.OptiTrack;
@@ -38,6 +41,9 @@ namespace VinteR
 
 #if LEAP
             Bind<IInputAdapter>().To<LeapMotionAdapter>().Named(HardwareSystems.LeapMotion);
+#endif
+#if KINECT
+            Bind<IInputAdapter>().To<KinectAdapter>().Named(HardwareSystems.Kinect);
 #endif
 #if OPTITRACK
             Bind<IInputAdapter>().To<OptiTrackAdapter>().Named(HardwareSystems.OptiTrack);

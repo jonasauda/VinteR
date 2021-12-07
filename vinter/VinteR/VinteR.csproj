@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;OPTITRACK</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;OPTITRACK, LEAP, KINECT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -51,7 +51,7 @@
       <HintPath>packages\Grapevine.4.2.2\lib\net40\Grapevine.dll</HintPath>
     </Reference>
     <Reference Include="LeapCSharp.NET4.5">
-      <HintPath>..\lib\x64\LeapCSharp.NET4.5.dll</HintPath>
+      <HintPath>lib\x64\LeapCSharp.NET4.5.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -126,6 +126,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapter\Kinect\KinectAdapter.cs" />
+    <Compile Include="Adapter\Kinect\KinectEventHandler.cs" />
+    <Compile Include="Adapter\Kinect\KinectOutputHandler.cs" />
     <Compile Include="Adapter\Network\Hrri.cs" />
     <Compile Include="Adapter\Network\NetworkAdapter.cs" />
     <Compile Include="Adapter\Network\NetworkClient.cs" />
