@@ -1,4 +1,5 @@
-﻿using Microsoft.Kinect;
+﻿#if KINECT
+using Microsoft.Kinect;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -192,3 +193,4 @@ namespace VinteR.Adapter.Kinect
         }
     }
 }
+#endif

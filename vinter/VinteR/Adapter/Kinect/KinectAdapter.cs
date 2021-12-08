@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if KINECT
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -187,3 +188,4 @@ namespace VinteR.Adapter.Kinect
         }
     }
 }
+#endif
