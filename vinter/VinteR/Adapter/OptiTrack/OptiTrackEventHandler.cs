@@ -105,6 +105,8 @@ namespace VinteR.Adapter.OptiTrack
 
                 // in addition add each marker as point to the body
                 var name = _client.NameById(rbData.ID);
+                //quick fix to get names back - Marvin
+                rb.Name = name;
                 if (markerSets.TryGetValue(name, out var ms))
                 {
                     rb.Name = name;

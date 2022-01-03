@@ -83,12 +83,12 @@ namespace VinteR.Streaming
                 else if (mocapFrame.AdapterType == HardwareSystems.OptiTrack)
                 {
                     //TODO: No idea if this is a good idea or solves the problem - Marvin
-                    hrriString = HardwareSystems.OptiTrack;
+                    hrriString = _systemHrri.Location + "-optitrack";
                 }
                 else if (mocapFrame.AdapterType == HardwareSystems.LeapMotion)
                 {
                     //TODO: No idea if this is a good idea or solves the problem - Marvin
-                    hrriString = HardwareSystems.LeapMotion;
+                    hrriString = _systemHrri.Location + "-leapmotion";
                 }
                 else
                 {
