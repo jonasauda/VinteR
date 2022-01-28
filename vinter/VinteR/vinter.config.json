@@ -9,6 +9,21 @@
   "udp.server.port": 5060,
   "udp.receivers": [
     {
+      "ip": "127.0.0.1",
+      "port": 3457,
+      "hrri": "localhost"
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 6040,
+      "hrri": "localhost2"
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 6041,
+      "hrri": "localhost3"
+    },
+    {
       "ip": "192.168.1.3",
       "port": 2020,
       "hrri": "LOCATION1"
@@ -56,7 +71,7 @@
       "framedroprate": 2
     },
     {
-      "enabled": false,
+      "enabled": true,
       "name": "optitrack",
       "adaptertype": "optitrack",
       "server.ip": "127.0.0.1",
@@ -65,7 +80,7 @@
       "connection.type": "multicast"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "holoroom",
       "framedroprate": 2,
       "adaptertype": "holoroom",
@@ -73,7 +88,7 @@
       "hrri": "LOCATION1"
     },
     {
-      "enabled": true,
+      "enabled": false, 
       "name": "peer",
       "framedroprate": 2,
       "adaptertype": "peer",

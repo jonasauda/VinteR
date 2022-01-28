@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Define LEAP, OPTITRACK, HOLOROOM, PEER and/or KINECT in Project Properties -> Build to enable features
+
+using System;
 using System.Threading;
 using Ninject;
 using VinteR.MainApplication;

@@ -80,6 +80,16 @@ namespace VinteR.Streaming
                 {
                     hrriString = frame.Bodies[0].Name;
                 }
+                else if (mocapFrame.AdapterType == HardwareSystems.OptiTrack)
+                {
+                    //TODO: No idea if this is a good idea or solves the problem - Marvin
+                    hrriString = _systemHrri.Location + "-optitrack";
+                }
+                else if (mocapFrame.AdapterType == HardwareSystems.LeapMotion)
+                {
+                    //TODO: No idea if this is a good idea or solves the problem - Marvin
+                    hrriString = _systemHrri.Location + "-leapmotion";
+                }
                 else
                 {
                     // is there a reason Hrris are associated with bodies, not frames?

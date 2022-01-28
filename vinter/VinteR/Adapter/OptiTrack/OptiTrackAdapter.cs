@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if OPTITRACK
+using System;
 using VinteR.Model;
 
 namespace VinteR.Adapter.OptiTrack
@@ -87,3 +88,4 @@ namespace VinteR.Adapter.OptiTrack
         }
     }
 }
+#endif

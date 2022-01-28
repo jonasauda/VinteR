@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if OPTITRACK
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NatNetML;
@@ -187,12 +188,17 @@ namespace VinteR.Adapter.OptiTrack
                 Data description is re-obtained in the main function so that contents
                 in the frame handler is kept minimal. */
             if ((data.bTrackingModelsChanged
-                 || data.nMarkerSets != _markerSets.Count
+                //Commented out next line because the Number of MarkerSets does notseem to match the MarkerSets in the DataDescriptor.
+                //|| data.nMarkerSets != _markerSets.Count
                  || data.nRigidBodies != _rigidBodies.Count
                  || data.nSkeletons != _skeletons.Count))
             {
                 Logger.Debug("\n===============================================================================\n");
                 Logger.Debug("Change in the list of the assets. Refetching the descriptions");
+                Logger.Debug("MarkerSets: {0}  Saved: {1}", data.nMarkerSets, _markerSets.Count);
+                Logger.Debug("RigidBodies: {0}  Saved: {1}", data.nRigidBodies, _rigidBodies.Count);
+                Logger.Debug("Skeletons: {0}  Saved: {1}", data.nSkeletons, _skeletons.Count);
+                Logger.Debug("Data: {0}", data.nMarkers);
 
                 /*  Clear out existing lists */
                 _dataDescriptor.Clear();
@@ -251,7 +257,7 @@ namespace VinteR.Adapter.OptiTrack
                         var ms = (MarkerSet) description[i];
                         Logger.Info("\tMarkerset ({0})", ms.Name);
 
-                        // Saving Rigid Body Descriptions
+                        // Saving Marker Set Descriptions
                         _markerSets.Add(ms);
                         break;
                     case ((int) DataDescriptorType.eRigidbodyData):
@@ -262,13 +268,16 @@ namespace VinteR.Adapter.OptiTrack
                         _rigidBodies.Add(rb);
                         _nameById.Add(rb.ID, rb.Name);
                         break;
-                    case ((int) DataDescriptorType.eSkeletonData):
-                        var skeleton = (Skeleton) description[i];
+                    case ((int)DataDescriptorType.eSkeletonData):
+                        var skeleton = (Skeleton)description[i];
                         Logger.Info("\tSkeleton ({0}), Bones:", skeleton.Name);
 
                         //Saving Skeleton Descriptions
                         _skeletons.Add(skeleton);
                         _nameById.Add(skeleton.ID, skeleton.Name);
+                        break;
+                    case ((int)DataDescriptorType.eCameraData):
+                        //Logger.Info("\tCamera");
                         break;
 
                     default:
@@ -290,3 +299,4 @@ namespace VinteR.Adapter.OptiTrack
         }
     }
 }
+#endif
