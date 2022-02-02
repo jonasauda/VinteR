@@ -1,43 +1,65 @@
-# VinteR
+# Instructions
+> Not all combinations of Inputs are currently supported. It is planned to add more combinations in the future. For now an OptiTrack system is required to merge coordinate systems.
 
+## General Use
+### Installation
+1. Open the VinteR app in Visual Studio (`VinteR\vinter\VinteR.sln`)
+2. Install the NuGet packages
+	1. Right click on the VinteR C# project in the Solution Explorer and select "Manage NuGet Packages..."
+	2. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retrieve packages automatically.
+3. Opening "References" in the Solution Explorer fixes most "type or namespace name could not be found"-Errors
+4. Press Start in Visual Studio to start VinteR
 
-# Deployment and Installation:
+### Adding Functionality
+To add different functionalities to VinteR like OptiTrack, LeapMotion or Kinect, the corresponding Flag has to be defined as a preprocessor directive.
 
-As this project makes heavy use of OptiTrack, Leap Motion and Microsoft Kinect in specific versions, you have to install some software to get things working.
+1. Open the Properties of the VinteR C# project in the Solution Explorer
+	1.	To see most of the Options, the .NET desktop development feature has to be added to Visual Studio 2019 Community. This can be done by launching the Visual Studio Installer.
+2.	In the "Build"-Tab is a field to enter own flags.
 
-The leap motion requires the .NET Framework 4.5.x! 4.6 and higher might work but are not tested. For Windows 10 users the kinect sdk has to be installed in windows 7 compatibility mode! Otherwise runtime errors are going to occure. To get the frames from the Leap Motion, you need to install the Leap Motion Orion Software on your machine, for building or running the solution it is not necessary. If you want use a gitlab runner instance on your machine to execute continuous integration Visual Studio 2017 Enterprise is required. Take a look at the `.gitlab-ci.yml`. There is an absolute path to the `MSBuild.exe`.
+The next sections will describe requirements for each functionality and what Flag to define to activate it.
 
-## Requirements
+## OptiTrack
 
-- .NET Framework 4.5.x
-- Microsoft Kinect SDK 1.8
-- Leap Motion Developer Kit (Orion) 3.2.1
-- Microsoft Visual Studio 2017 Enterprise (only for gitlab runner)
+__NatNet SDK__
+1. Download the NatNet SDK from the OptiTrack Website
+2. Copy the "lib" folder into "vinter/"
+3. (Re-Add the Reference in Visual Studio if necessary)
 
-## Installation
+> It is assumed that an OptiTrack System and Software like Motive as a NatNet Server is present and configured to stream data to NatNet.
 
-1. Deploy the broker (server.py) on a server. The server must be publicly available.
+__Activation__
+Make sure the compiler Flag "OPTITRACK" is set in the Build-Tab.
 
-2. Adjust the SERVER_ADDRESS (IP address and port): SERVER_ADDRESS = ("46.101.139.210", 43720) in server.py (Line 5).
+## LeapMotion
+__Orion 3.2 + SDK__
+1. Download Legacy API for Leap Motion Orion 3.2 from Ultraleap
+2. Install the Orion Software and configure it
+3. Copy the LeapCSharp.NET4.5.dll and the content of "lib/x64" into the project's "vinter/lib/x64"
+3. (Re-Add the Reference in Visual Studio if necessary)
+4. The Leap Motion is able to automatically rotate its coordinate system depending on the position and rotation of the hands. This should be disabled in the Orion software's settings to ensure a stable coordinate system. This can be done in the general settings (`Automatically align tracking`).
 
-3. Start the script.
+__Activation__
+Make sure the compiler Flag "LEAP" is set in the Build-Tab.
 
-4. Open the VinteR app in Visual Studio (VinteR\vinter\VinteR.sln).
+## Kinect
+__Currently not working__
 
-5. Install the NuGet packages. Right click on the VinteR C# project in the Solution Explorer and select "Manage NuGet Packages...".
+## Peer & HoloRoom
 
-6. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retreive packages automatically.
+__Currently not working__
 
-## Configure VinteR
+### Adding Receivers
+1. Open `vinter.config.json` in `VinteR\vinter`
+2. Add a Receiver by adding it to `udp.receivers` such as:
+```
+    {
+      "ip": "127.0.0.1",
+      "port": 6040,
+      "hrri": "localhost"
+    },
+```
+3. The `hrri` is used as a unique endpoint identifier
 
-1. Enter the broker IP address/url and port in the "vinter.config.json" at "broker.address".
-2. in "udp.receivers" the locations are definded. For location "LOCATION1" enter your IP address and port. For the remote location enter the remote IP address and port.
-3. You may need to configure port forwarding on your router.
-
-## Run VinteR
-
-1. Start the project in Visual Studio (Start button).
-
-
-## License
+# License
 MIT
