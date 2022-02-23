@@ -34,14 +34,13 @@ public class Tracker : MonoBehaviour
 	[Tooltip("The Map to initiate")]
 	public GameObject Map;
 	
-	[Tooltip("If the tracked object is the VR Camera Rig")]
-	public bool isCameraRig = false;
+	[Tooltip("If the tracked object should be rotated")]
+	public bool positionOnly = false;
 	[Tooltip("If the tracked object is a LeapMotion Hand Rig")]
 	public bool isLeapHands = false;
-	[Tooltip("Motiv Name of the Camera Rig")]
-	public String cameraName;
+	[Tooltip("Motive Name of the RigidBody")]
+	public String MotiveName;
 	
-	private String TrackedObjectName;
 	private Vector3 _position;
 	private Vector3 _rotation;
 	
@@ -51,12 +50,11 @@ public class Tracker : MonoBehaviour
 	private int lastdampeningBufferSize;
 	
 	private bool _initMapPosition = true;
-	private bool _isStartSet = true;
+	private bool _isStartSet = false;
 
 	// Use this for initialization
 	void Start () {
-		TrackedObjectName = transform.name;
-
+	
 		frameCounter = 0;
 		
 		positionBuffer = new Vector3[dampeningBufferSize];
@@ -68,14 +66,14 @@ public class Tracker : MonoBehaviour
 		var mocapFrame = VinterReciver.getCurrentMocapFrame();
 		if (mocapFrame != null)
 		{
-			var body = mocapFrame.Bodies.SingleOrDefault(b => b.Name.Equals((isCameraRig ||isLeapHands)? cameraName : TrackedObjectName));
+			var body = mocapFrame.Bodies.SingleOrDefault(b => b.Name.Equals(MotiveName));
 			if (body != null)
 			{
 				// Extract position and rotation from MocapFrame
-				_position = new Vector3(body.Centroid.Z * 0.001f + offset.x, body.Centroid.Y * 0.001f + offset.y,
-					body.Centroid.X * 0.001f + offset.z);
+				_position = new Vector3(-body.Centroid.X * 0.001f + offset.x, body.Centroid.Y * 0.001f + offset.y,
+					body.Centroid.Z * 0.001f + offset.z);
 
-				var quaternion = new Quaternion(body.Rotation.Z, body.Rotation.Y, body.Rotation.X, -body.Rotation.W);
+				var quaternion = new Quaternion(-body.Rotation.X, body.Rotation.Y, body.Rotation.Z, -body.Rotation.W);
 				_rotation = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y, quaternion.eulerAngles.z);
 
 
@@ -125,22 +123,20 @@ public class Tracker : MonoBehaviour
 	
 	private void setTransform()
 	{
-		transform.position = _position;
-		
-		if (!isCameraRig && !isLeapHands)
+		transform.localPosition = _position;
+		if (!positionOnly && !isLeapHands)
 		{
-			transform.position = _position;
-			transform.rotation = Quaternion.Euler(_rotation);
+			transform.localRotation = Quaternion.Euler(_rotation);
 		}
 		else if (isLeapHands)
 		{
-			transform.position = new Vector3(_position.x,0, _position.z);
-			transform.rotation = Quaternion.Euler(0, _rotation.y, 0);
+			transform.localPosition = new Vector3(_position.x,0, _position.z);
+			transform.localRotation = Quaternion.Euler(0, _rotation.y, 0);
 		}
 		else if (_isStartSet)
 		{
-			transform.position = _position;
-			transform.rotation = Quaternion.Euler(0, _rotation.y, 0);
+			transform.localPosition = _position;
+			transform.localRotation = Quaternion.Euler(0, _rotation.y, 0);
 			_isStartSet = false;
 		}
 	}
