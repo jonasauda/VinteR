@@ -50,7 +50,7 @@ public class Tracker : MonoBehaviour
 	private int lastdampeningBufferSize;
 	
 	private bool _initMapPosition = true;
-	private bool _isStartSet = false;
+	private bool _isStartSet = true;
 
 	// Use this for initialization
 	void Start () {
