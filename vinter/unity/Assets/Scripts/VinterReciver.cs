@@ -9,7 +9,9 @@ public class VinterReciver : MonoBehaviour
 {
     //private readonly float roomscale = 0.001f;
    
-    private IPEndPoint OptiTRackEndPoint = new IPEndPoint(IPAddress.Any, 3457);
+	[Tooltip("The Port to listen on. Must be identical to configured receiver port in VinteR")]
+	public int port = 3457;
+    private IPEndPoint OptiTRackEndPoint;
     private UdpClient OptiTrackClient;
     private Thread OptiTrackListener;
     private MocapFrame currentMocapFrame;
@@ -19,6 +21,7 @@ public class VinterReciver : MonoBehaviour
     void Start()
     {
         Debug.Log("Starting OptiTrack Listener...");
+		OptiTRackEndPoint = new IPEndPoint(IPAddress.Any, port);
         OptiTrackClient = new UdpClient(OptiTRackEndPoint);
         OptiTrackListener = new Thread(new ThreadStart(ReceiveOptiTrackData));
         OptiTrackListener.IsBackground = true;
