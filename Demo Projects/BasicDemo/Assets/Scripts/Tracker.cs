@@ -10,11 +10,19 @@ using VinteR.Model.Gen;
 
 public class Tracker : MonoBehaviour
 {
-	[Tooltip("Gameobject with Vinter Client Script")]
+	[Header("General")]
+	[Tooltip("Gameobject with Vinter Receiver Script")]
 	public VinterReciver VinterReciver;
+	[Tooltip("Motive Name of the RigidBody")]
+	public String MotiveName;
 	[Tooltip("Position offset from the tracked Centroid")]
 	public Vector3 offset;
-	
+	[Tooltip("If the tracked object should be rotated")]
+	public bool positionOnly = false;
+	[Tooltip("If the tracked object is a LeapMotion Hand Rig")]
+	public bool isLeapHands = false;
+
+	[Header("Dampening")]
 	[Tooltip("If and how to dampen position and roation")]
 	public DampeningFunktion dampeningFunktion = DampeningFunktion.none;
 	[Tooltip("Number of Frames to dampen over")]
@@ -27,20 +35,14 @@ public class Tracker : MonoBehaviour
 		median
 	}
 	
-	[Tooltip("If true, the Map will be initially set to the position of this object")]
+	[Header("Map Init Object")]
+	[Tooltip("If true, the Map will be initially set to the position of this object, used to move the play area to a specific object")]
 	public bool isInitPoint = false;
 	[Tooltip("Initial map offset")]
 	public Vector3 initOffset;
 	[Tooltip("The Map to initiate")]
 	public GameObject Map;
-	
-	[Tooltip("If the tracked object should be rotated")]
-	public bool positionOnly = false;
-	[Tooltip("If the tracked object is a LeapMotion Hand Rig")]
-	public bool isLeapHands = false;
-	[Tooltip("Motive Name of the RigidBody")]
-	public String MotiveName;
-	
+		
 	private Vector3 _position;
 	private Vector3 _rotation;
 	
@@ -50,7 +52,7 @@ public class Tracker : MonoBehaviour
 	private int lastdampeningBufferSize;
 	
 	private bool _initMapPosition = true;
-	private bool _isStartSet = false;
+	private bool _isStartSet = true;
 
 	// Use this for initialization
 	void Start () {
@@ -70,6 +72,7 @@ public class Tracker : MonoBehaviour
 			if (body != null)
 			{
 				// Extract position and rotation from MocapFrame
+				//Assuming z forward, x left, y up. invert axis to change
 				_position = new Vector3(-body.Centroid.X * 0.001f + offset.x, body.Centroid.Y * 0.001f + offset.y,
 					body.Centroid.Z * 0.001f + offset.z);
 
@@ -123,20 +126,20 @@ public class Tracker : MonoBehaviour
 	
 	private void setTransform()
 	{
-		transform.position = _position;
+		transform.localPosition = _position;
 		if (!positionOnly && !isLeapHands)
 		{
-			transform.rotation = Quaternion.Euler(_rotation);
+			transform.localRotation = Quaternion.Euler(_rotation);
 		}
 		else if (isLeapHands)
 		{
-			transform.position = new Vector3(_position.x,0, _position.z);
-			transform.rotation = Quaternion.Euler(0, _rotation.y, 0);
+			transform.localPosition = new Vector3(_position.x,0, _position.z);
+			transform.localRotation = Quaternion.Euler(0, _rotation.y, 0);
 		}
 		else if (_isStartSet)
 		{
-			transform.position = _position;
-			transform.rotation = Quaternion.Euler(0, _rotation.y, 0);
+			transform.localPosition = _position;
+			transform.localRotation = Quaternion.Euler(0, _rotation.y, 0);
 			_isStartSet = false;
 		}
 	}
