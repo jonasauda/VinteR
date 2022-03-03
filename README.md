@@ -3,7 +3,9 @@
 
 ## General Use
 ### Installation
-1. Open the VinteR app in Visual Studio (`VinteR\vinter\VinteR.sln`)
+1. Open the VinteR app in Visual Studio (`vinter\VinteR.sln`)
+	1. Tested with VS 2022 Community
+	2. App is updated to .NET 4.8
 2. Install the NuGet packages
 	1. Right click on the VinteR C# project in the Solution Explorer and select "Manage NuGet Packages..."
 	2. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retrieve packages automatically.
@@ -14,7 +16,7 @@
 To add different functionalities to VinteR like OptiTrack, LeapMotion or Kinect, the corresponding Flag has to be defined as a preprocessor directive.
 
 1. Open the Properties of the VinteR C# project in the Solution Explorer
-	1.	To see most of the Options, the .NET desktop development feature has to be added to Visual Studio 2019 Community. This can be done by launching the Visual Studio Installer.
+	1.	To see most of the Options, the .NET desktop development feature has to be added. This can be done by launching the Visual Studio Installer.
 2.	In the "Build"-Tab is a field to enter own flags.
 
 The next sections will describe requirements for each functionality and what Flag to define to activate it.
@@ -50,7 +52,7 @@ __Currently not working__
 __Currently not working__
 
 ### Adding Receivers
-1. Open `vinter.config.json` in `VinteR\vinter`
+1. Open `vinter.config.json` in `vinter`
 2. Add a Receiver by adding it to `udp.receivers` such as:
 ```
     {
