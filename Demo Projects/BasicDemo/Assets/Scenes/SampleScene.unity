@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd2fc56dc6bf504ebe30573012432aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  port: 3457
 --- !u!4 &946836538
 Transform:
   m_ObjectHideFlags: 0
@@ -381,7 +382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946836536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.318356, y: -10.925118, z: -22.24852}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -679,15 +680,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VinterReciver: {fileID: 946836537}
+  MotiveName: FootTrackingDustinRight
   offset: {x: 0, y: 0, z: 0}
+  positionOnly: 0
+  isLeapHands: 0
   dampeningFunktion: 0
   dampeningBufferSize: 0
   isInitPoint: 0
   initOffset: {x: 0, y: 0, z: 0}
   Map: {fileID: 0}
-  positionOnly: 0
-  isLeapHands: 0
-  MotiveName: FootTrackingDustinRight
 --- !u!1 &1288332170
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,15 +830,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VinterReciver: {fileID: 946836537}
+  MotiveName: FootTrackingDustinQuest
   offset: {x: 0, y: 0, z: 0}
+  positionOnly: 1
+  isLeapHands: 0
   dampeningFunktion: 0
   dampeningBufferSize: 0
   isInitPoint: 0
   initOffset: {x: 0, y: 0, z: 0}
   Map: {fileID: 0}
-  positionOnly: 1
-  isLeapHands: 0
-  MotiveName: FootTrackingDustinQuest
 --- !u!1 &1452909434
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,15 +917,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VinterReciver: {fileID: 946836537}
+  MotiveName: FootTrackingDustinLeft
   offset: {x: 0, y: 0, z: 0}
+  positionOnly: 0
+  isLeapHands: 0
   dampeningFunktion: 0
   dampeningBufferSize: 0
   isInitPoint: 0
   initOffset: {x: 0, y: 0, z: 0}
   Map: {fileID: 0}
-  positionOnly: 0
-  isLeapHands: 0
-  MotiveName: FootTrackingDustinLeft
 --- !u!1 &2098161524
 GameObject:
   m_ObjectHideFlags: 0
