@@ -6,7 +6,7 @@ public class Tracker : MonoBehaviour
 {
 	[Header("General")]
 	[Tooltip("GameObject with Vinter Receiver Script")]
-	public VinterReciver vinterReceiver;
+	public VinterReceiver vinterReceiver;
 	[Tooltip("Motive Name of the RigidBody")]
 	public string motiveName;
 	[Tooltip("Position offset from the tracked Centroid")]
@@ -49,7 +49,7 @@ public class Tracker : MonoBehaviour
 	private bool _isStartSet = true;
 
 	// Use this for initialization
-	void Start () {
+	private void Start () {
 	
 		_frameCounter = 0;
 		
@@ -57,9 +57,9 @@ public class Tracker : MonoBehaviour
 		_rotationBuffer = new Vector3[dampeningBufferSize];
 	}
 
-	void FixedUpdate()
+	private void FixedUpdate()
 	{
-		var moCapFrame = vinterReceiver.getCurrentMocapFrame();
+		var moCapFrame = vinterReceiver.GetCurrentMoCapFrame();
 		if (moCapFrame != null)
 		{
 			var body = moCapFrame.Bodies.SingleOrDefault(b => b.Name.Equals(motiveName));
