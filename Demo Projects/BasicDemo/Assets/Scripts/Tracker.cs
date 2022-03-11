@@ -1,77 +1,71 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Management.Instrumentation;
-//using Assets;
 using UnityEngine;
-using UnityEngine.iOS;
-using VinteR.Model.Gen;
 
 public class Tracker : MonoBehaviour
 {
 	[Header("General")]
-	[Tooltip("Gameobject with Vinter Receiver Script")]
-	public VinterReciver VinterReciver;
+	[Tooltip("GameObject with Vinter Receiver Script")]
+	public VinterReceiver vinterReceiver;
 	[Tooltip("Motive Name of the RigidBody")]
-	public String MotiveName;
+	public string motiveName;
 	[Tooltip("Position offset from the tracked Centroid")]
 	public Vector3 offset;
 	[Tooltip("If the tracked object should be rotated")]
-	public bool positionOnly = false;
+	public bool positionOnly;
 	[Tooltip("If the tracked object is a LeapMotion Hand Rig")]
-	public bool isLeapHands = false;
+	public bool isLeapHands;
 
 	[Header("Dampening")]
-	[Tooltip("If and how to dampen position and roation")]
-	public DampeningFunktion dampeningFunktion = DampeningFunktion.none;
+	[Tooltip("If and how to dampen position and rotation")]
+	public DampeningFunction dampeningFunction = DampeningFunction.None;
 	[Tooltip("Number of Frames to dampen over")]
 	public int dampeningBufferSize;
 
-	public enum DampeningFunktion
+	public enum DampeningFunction
 	{
-		none,
-		mean,
-		median
+		None,
+		Mean,
+		Median
 	}
 	
 	[Header("Map Init Object")]
 	[Tooltip("If true, the Map will be initially set to the position of this object, used to move the play area to a specific object")]
-	public bool isInitPoint = false;
+	public bool isInitPoint;
 	[Tooltip("Initial map offset")]
 	public Vector3 initOffset;
 	[Tooltip("The Map to initiate")]
-	public GameObject Map;
+	public GameObject map;
 		
 	private Vector3 _position;
 	private Vector3 _rotation;
 	
-	private int frameCounter;
-	private Vector3[] positionBuffer;
-	private Vector3[] rotationBuffer;
-	private int lastdampeningBufferSize;
+	private int _frameCounter;
+	private Vector3[] _positionBuffer;
+	private Vector3[] _rotationBuffer;
+	private int _lastDampeningBufferSize;
 	
 	private bool _initMapPosition = true;
 	private bool _isStartSet = true;
 
 	// Use this for initialization
-	void Start () {
+	private void Start () {
 	
-		frameCounter = 0;
+		_frameCounter = 0;
 		
-		positionBuffer = new Vector3[dampeningBufferSize];
-		rotationBuffer = new Vector3[dampeningBufferSize];
+		_positionBuffer = new Vector3[dampeningBufferSize];
+		_rotationBuffer = new Vector3[dampeningBufferSize];
 	}
 
-	void FixedUpdate()
+	private void FixedUpdate()
 	{
-		var mocapFrame = VinterReciver.getCurrentMocapFrame();
-		if (mocapFrame != null)
+		var moCapFrame = vinterReceiver.GetCurrentMoCapFrame();
+		if (moCapFrame != null)
 		{
-			var body = mocapFrame.Bodies.SingleOrDefault(b => b.Name.Equals(MotiveName));
+			var body = moCapFrame.Bodies.SingleOrDefault(b => b.Name.Equals(motiveName));
 			if (body != null)
 			{
-				// Extract position and rotation from MocapFrame
+				// Extract position and rotation from MoCapFrame
 				//Assuming z forward, x left, y up. invert axis to change
 				_position = new Vector3(-body.Centroid.X * 0.001f + offset.x, body.Centroid.Y * 0.001f + offset.y,
 					body.Centroid.Z * 0.001f + offset.z);
@@ -85,46 +79,46 @@ public class Tracker : MonoBehaviour
 					// init the Map to the position of the tracked object
 					_initMapPosition = false;
 
-					Map.transform.position = _position + initOffset;
-					Map.transform.rotation = Quaternion.Euler(0, quaternion.eulerAngles.y, 0);
+					map.transform.position = _position + initOffset;
+					map.transform.rotation = Quaternion.Euler(0, quaternion.eulerAngles.y, 0);
 				}
 
-				switch (dampeningFunktion)
+				switch (dampeningFunction)
 				{
-					case DampeningFunktion.mean:
-						wirteToBuffer();
-						mean();
+					case DampeningFunction.Mean:
+						WriteToBuffer();
+						Mean();
 						break;
-					case DampeningFunktion.median:
-						wirteToBuffer();
-						median();
+					case DampeningFunction.Median:
+						WriteToBuffer();
+						Median();
 						break;
 					default:
-						setTransform();
+						SetTransform();
 						break;
 				}
 			}
 		}
 	}
 
-	private void wirteToBuffer()
+	private void WriteToBuffer()
 	{
-		// Reset the arrays when the number of frames to damp ofer is changed
-		if (dampeningBufferSize != lastdampeningBufferSize)
+		// Reset the arrays when the number of frames to damp over is changed
+		if (dampeningBufferSize != _lastDampeningBufferSize)
 		{
-			positionBuffer = new Vector3[dampeningBufferSize];
-			rotationBuffer = new Vector3[dampeningBufferSize];
+			_positionBuffer = new Vector3[dampeningBufferSize];
+			_rotationBuffer = new Vector3[dampeningBufferSize];
 		}
 			
 		// insert new position and rotation in the buffer
-		frameCounter = frameCounter % dampeningBufferSize;
-		positionBuffer[frameCounter] = _position;
-		rotationBuffer[frameCounter] = _rotation;
-		lastdampeningBufferSize = dampeningBufferSize;
-		frameCounter++;
+		_frameCounter %= dampeningBufferSize;
+		_positionBuffer[_frameCounter] = _position;
+		_rotationBuffer[_frameCounter] = _rotation;
+		_lastDampeningBufferSize = dampeningBufferSize;
+		_frameCounter++;
 	}
 	
-	private void setTransform()
+	private void SetTransform()
 	{
 		transform.localPosition = _position;
 		if (!positionOnly && !isLeapHands)
@@ -144,12 +138,12 @@ public class Tracker : MonoBehaviour
 		}
 	}
 
-	private void mean()
+	private void Mean()
 	{
-		float posX = 0f;
-		float posY = 0f;
-		float posZ = 0f;
-		foreach (Vector3 position in positionBuffer)
+		var posX = 0f;
+		var posY = 0f;
+		var posZ = 0f;
+		foreach (var position in _positionBuffer)
 		{
 			posX += position.x;
 			posY += position.y;
@@ -157,38 +151,38 @@ public class Tracker : MonoBehaviour
 		}
 		_position = new Vector3(posX, posY, posZ) / dampeningBufferSize;
                 				
-		float rotX = 0f;
-		float rotY = 0f;
-		float rotZ = 0f;
-		foreach (Vector3 rotation in rotationBuffer)
+		var rotX = 0f;
+		var rotY = 0f;
+		var rotZ = 0f;
+		foreach (var rotation in _rotationBuffer)
 		{
 			rotX += rotation.x;
 			rotY += rotation.y;
 			rotZ += rotation.z;
 		}
 		_rotation = new Vector3(rotX, rotY, rotZ) / dampeningBufferSize;
-		setTransform();
+		SetTransform();
 	}
 
-	private void median()
+	private void Median()
 	{
-		float[] posX = new float[positionBuffer.Length];
-		float[] posY = new float[positionBuffer.Length];
-		float[] posZ = new float[positionBuffer.Length];
+		var posX = new float[_positionBuffer.Length];
+		var posY = new float[_positionBuffer.Length];
+		var posZ = new float[_positionBuffer.Length];
 		
-		float[] rotX = new float[positionBuffer.Length];
-		float[] rotY = new float[positionBuffer.Length];
-		float[] rotZ = new float[positionBuffer.Length];
+		var rotX = new float[_positionBuffer.Length];
+		var rotY = new float[_positionBuffer.Length];
+		var rotZ = new float[_positionBuffer.Length];
 		
-		for (int i = 0; i < positionBuffer.Length; i++)
+		for (var i = 0; i < _positionBuffer.Length; i++)
 		{
-			posX[i] = positionBuffer[i].x;
-			posY[i] = positionBuffer[i].y;
-			posZ[i] = positionBuffer[i].z;
+			posX[i] = _positionBuffer[i].x;
+			posY[i] = _positionBuffer[i].y;
+			posZ[i] = _positionBuffer[i].z;
 			
-			rotX[i] = rotationBuffer[i].x;
-			rotY[i] = rotationBuffer[i].y;
-			rotZ[i] = rotationBuffer[i].z;
+			rotX[i] = _rotationBuffer[i].x;
+			rotY[i] = _rotationBuffer[i].y;
+			rotZ[i] = _rotationBuffer[i].z;
 		}
 		
 		Array.Sort(posX);
@@ -200,9 +194,9 @@ public class Tracker : MonoBehaviour
 		Array.Sort(rotZ);
 		
 		
-		int m = (int) (positionBuffer.Length / 2);
+		var m = _positionBuffer.Length / 2;
 		
-		if (positionBuffer.Length % 2 == 0)
+		if (_positionBuffer.Length % 2 == 0)
 		{
 			_position = new Vector3(
 				(posX[m] + posX[m-1])/2,
@@ -221,6 +215,6 @@ public class Tracker : MonoBehaviour
 			_position = new Vector3(posX[m], posY[m], posZ[m]);
 			_rotation = new Vector3(rotX[m], rotY[m], rotZ[m]);
 		}
-		setTransform();
+		SetTransform();
 	}
 }

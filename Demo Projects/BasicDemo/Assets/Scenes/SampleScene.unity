@@ -679,16 +679,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50949fa09eb8dd84a86c823605b035d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VinterReciver: {fileID: 946836537}
-  MotiveName: FootTrackingDustinRight
+  vinterReceiver: {fileID: 946836537}
+  motiveName: 
   offset: {x: 0, y: 0, z: 0}
   positionOnly: 0
   isLeapHands: 0
-  dampeningFunktion: 0
+  dampeningFunction: 0
   dampeningBufferSize: 0
   isInitPoint: 0
   initOffset: {x: 0, y: 0, z: 0}
-  Map: {fileID: 0}
+  map: {fileID: 0}
 --- !u!1 &1288332170
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,16 +829,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50949fa09eb8dd84a86c823605b035d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VinterReciver: {fileID: 946836537}
-  MotiveName: FootTrackingDustinQuest
+  vinterReceiver: {fileID: 946836537}
+  motiveName: 
   offset: {x: 0, y: 0, z: 0}
   positionOnly: 1
   isLeapHands: 0
-  dampeningFunktion: 0
+  dampeningFunction: 0
   dampeningBufferSize: 0
   isInitPoint: 0
   initOffset: {x: 0, y: 0, z: 0}
-  Map: {fileID: 0}
+  map: {fileID: 0}
 --- !u!1 &1452909434
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,16 +916,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50949fa09eb8dd84a86c823605b035d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VinterReciver: {fileID: 946836537}
-  MotiveName: FootTrackingDustinLeft
+  vinterReceiver: {fileID: 946836537}
+  motiveName: 
   offset: {x: 0, y: 0, z: 0}
   positionOnly: 0
   isLeapHands: 0
-  dampeningFunktion: 0
+  dampeningFunction: 0
   dampeningBufferSize: 0
   isInitPoint: 0
   initOffset: {x: 0, y: 0, z: 0}
-  Map: {fileID: 0}
+  map: {fileID: 0}
 --- !u!1 &2098161524
 GameObject:
   m_ObjectHideFlags: 0
