@@ -10,8 +10,18 @@
   "udp.receivers": [
     {
       "ip": "127.0.0.1",
-      "port": 2020,
-      "hrri": "MUC-YELLOW"
+      "port": 3457,
+      "hrri": "localhost"
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 6040,
+      "hrri": "localhost2"
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 6041,
+      "hrri": "localhost3"
     }
   ],
   "mongodb": {
@@ -60,21 +70,21 @@
       "connection.type": "multicast"
     },
     {
-      "enabled": true,
+      "enabled": false,
       "name": "holoroom",
       "framedroprate": 2,
       "adaptertype": "holoroom",
       "client.port": 7282,
-      "hrri": "MUC"
+      "hrri": "LOCATION1"
     },
     {
-      "enabled": true,
+      "enabled": false, 
       "name": "peer",
       "framedroprate": 2,
       "adaptertype": "peer",
       "keepalive": true,
       "client.tx.port": 27005,
-      "broker.address": "ENTER_BROKER_ADDRESS_HERE",
+      "broker.address": "127.0.0.1",
       "broker.port": 43720
     }
   ],
