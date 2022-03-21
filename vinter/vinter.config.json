@@ -1,0 +1,102 @@
+{
+  "start.mode": "record",
+  "home.dir": "C:\\VinteRData",
+  "rest": {
+    "enabled": false,
+    "host": "localhost",
+    "port": 8010
+  },
+  "udp.server.port": 5060,
+  "udp.receivers": [
+    {
+      "ip": "127.0.0.1",
+      "port": 3457,
+      "hrri": "localhost"
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 6040,
+      "hrri": "localhost2"
+    },
+    {
+      "ip": "127.0.0.1",
+      "port": 6041,
+      "hrri": "localhost3"
+    },
+    {
+      "ip": "192.168.1.3",
+      "port": 2020,
+      "hrri": "LOCATION1"
+    },
+    {
+      "ip": "192.168.0.113",
+      "port": 7282,
+      "hrri": "LOCATION2"
+    }
+  ],
+  "mongodb": {
+    "enabled": false,
+    "write": true,
+    "domain": "localhost",
+    "user": "dbvinter",
+    "password": "dbvinter18",
+    "database": "vinter",
+    "port": 27017,
+    "bufferSize": 35000
+  },
+  "adapters": [
+    {
+      "enabled": false,
+      "name": "kinect",
+      "framedroprate": 1,
+      "adaptertype": "kinect",
+      "skeleton.TrackingFilter.enabled": true,
+      "data.dir": "KinectData",
+      "colorStream.enabled": false,
+      "colorStream.flush": false,
+      "colorStream.flushSize": 60,
+      "colorStream.flush.dirname": "colorStreamData",
+      "depthStream.enabled": false,
+      "depthStream.flush": false,
+      "depthStream.flushSize": 15,
+      "depthStream.flush.dirname": "DepthStreamData",
+      "skeletonStream.flush": false,
+      "skeletonStream.flushSize": 200,
+      "skeletonStream.flush.dirname": "skeletonStreamData"
+    },
+    {
+      "enabled": false,
+      "name": "leapmotion",
+      "adaptertype": "leapmotion",
+      "framedroprate": 2
+    },
+    {
+      "enabled": true,
+      "name": "optitrack",
+      "adaptertype": "optitrack",
+      "server.ip": "127.0.0.1",
+      "client.ip": "127.0.0.1",
+      "framedroprate": 2,
+      "connection.type": "multicast"
+    },
+    {
+      "enabled": false,
+      "name": "holoroom",
+      "framedroprate": 2,
+      "adaptertype": "holoroom",
+      "client.port": 7282,
+      "hrri": "LOCATION1"
+    },
+    {
+      "enabled": false, 
+      "name": "peer",
+      "framedroprate": 2,
+      "adaptertype": "peer",
+      "keepalive": true,
+      "client.tx.port": 27005,
+      "broker.address": "192.168.1.3",
+      "broker.port": 43720
+    }
+  ],
+  "jsonLoggerEnable": false
+}
