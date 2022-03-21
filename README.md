@@ -10,7 +10,8 @@
 	1. Right click on the VinteR C# project in the Solution Explorer and select "Manage NuGet Packages..."
 	2. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retrieve packages automatically.
 3. Opening "References" in the Solution Explorer fixes most "type or namespace name could not be found"-Errors
-4. Press Start in Visual Studio to start VinteR
+4. Copy vinter.config.default.json to vinter.config.json and edit parameters
+5. Press Start in Visual Studio to start VinteR
 
 ### Adding Functionality
 To add different functionalities to VinteR like OptiTrack, LeapMotion or Kinect, the corresponding Flag has to be defined as a preprocessor directive.
