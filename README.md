@@ -10,7 +10,8 @@
 	1. Right click on the VinteR C# project in the Solution Explorer and select "Manage NuGet Packages..."
 	2. Install/Update the packages needed to run VinteR via the NuGet Manager. If there is an action that allows you to restore the needed packages just click on "restore" to retrieve packages automatically.
 3. Opening "References" in the Solution Explorer fixes most "type or namespace name could not be found"-Errors
-4. Press Start in Visual Studio to start VinteR
+4. Copy vinter.config.default.json to vinter.config.json and edit parameters
+5. Press Start in Visual Studio to start VinteR
 
 ### Adding Functionality
 To add different functionalities to VinteR like OptiTrack, LeapMotion or Kinect, the corresponding Flag has to be defined as a preprocessor directive.
@@ -65,14 +66,14 @@ __Currently not working__
 
 ## Adding Unity Receiver
 
-1. Import the Assets from the "Unity Files" Folder into the project.
-2. Add the "Vinter Receiver" Script to a Game Object that is visible to any tracked object.
+1. Import the unitypackage from the "Unity Files" Folder into the project.
+2. Add the "Vinter Receiver" Script to a Game Object that is visible to any tracked object or add the Manager Prefab.
 	1. Only one receiver is necessary per Scene.
 	2. Make sure the Port is configured as a receiver in the vinter config
-3. Add the "Tracker" Script to a Game Object that should be moved.
+3. Add the "Tracker" Script to a Game Object that should be moved or add the TrackedObject prefab.
 	1. Enter the Name of the Motive RigidBody under "Motive Name"
 	2. (Optional) Configure a static position offset under "Offset"
-	3. (Optional) If you track a HMD, the Rotation should be provided by the HMD's tracking for a smoother experience. Therefore the Tracker needs to provide "Position Only" and the XR System needs to provide "Rotation Only". The first Frame will sync both rotations.
+	3. (Optional) If you track a HMD, the Rotation should be provided by the HMD's tracking for a smoother experience. Therefore the Tracker needs to provide "Position Only" and the XR System needs to provide "Rotation Only". The first Frame will sync both rotations. This is already configured if the unity XR system and the XRRig prefab is used.
 	4. (Optional) if the Tracked Object is Leap Motion Hands, check the checkbox "Is Leap Hands"
 	5. (Optional) If the Motion should be smoothed, a Dampening can be configured under "Dampening"
 	6. (Optional) If the Game World should be initialized on a specific real world position, configure a Tracker as Init Point and add the Parent Game Object of the Map as "Map"
